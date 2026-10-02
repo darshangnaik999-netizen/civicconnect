@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Issue - CivicConnect</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>  
+</head>
+
+<body>
+
+    <header>
+        <h1>🏙️ CivicConnect</h1>
+        <p>Report a Civic Issue</p>
+    </header>
+
+    <main>
+
+        <h2>📝 Submit Your Complaint</h2>
+
+        <form id="complaintForm">
+
+            <label>Citizen Name</label>
+            <br>
+            <input type="text" id="name"
+                   placeholder="Enter your name" required>
+
+            <br><br>
+
+            <label>Mobile Number</label>
+            <br>
+            <input type="tel" id="mobile"
+                   placeholder="Enter mobile number" required>
+
+            <br><br>
+
+            <label>Issue Type</label>
+            <br>
+
+            <select id="category" required>
+
+                <option value="">Select Issue</option>
+
+                <option>Pothole</option>
+
+                <option>Streetlight Failure</option>
+
+                <option>Drainage Problem</option>
+
+                <option>Garbage Problem</option>
+
+                <option>Other</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Location</label>
+<br>
+
+<button type="button" onclick="getLocation()">
+    📍 Detect My Location
+</button>
+
+<p id="locationStatus">
+    Location not detected
+</p>
+
+<input type="hidden" id="location">
+            <br><br>
+
+            <label>Describe the Problem</label>
+            <br>
+
+            <textarea id="description"
+                      placeholder="Describe the civic problem"
+                      rows="5"
+                      required></textarea>
+
+            <br><br>
+
+            <label>Upload Photo</label>
+            <br>
+
+            <input type="file" id="photo"
+                   accept="image/*">
+
+            <br><br>
+
+            <button type="submit">
+                🚨 Submit Complaint
+            </button>
+
+        </form>
+
+        <div id="result"></div>
+
+        <br>
+
+        <a href="index.html">
+            <button>⬅️ Back to Home</button>
+        </a>
+
+    </main>
+
+    <footer>
+        <p>© 2026 CivicConnect</p>
+    </footer>
+
+    <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+<script src="script.js"></script>
+
+</body>
+
+</html>
+<label>📍 Problem Location</label>
+<br>
+
+<button type="button" onclick="getLocation()">
+    Detect My Location
+</button>
+
+<p id="locationStatus">
+    Location not detected
+</p>
+
+<input type="hidden" id="location">
+
+<div id="map"></div>

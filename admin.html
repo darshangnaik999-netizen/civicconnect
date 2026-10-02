@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - CivicConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🏙️ CivicConnect</h1>
+        <p>Admin Dashboard</p>
+    </header>
+
+    <main>
+
+        <h2>📋 All Complaints</h2>
+
+        <div id="complaints"></div>
+
+        <br>
+
+        <a href="index.html">
+            <button>⬅️ Home</button>
+        </a>
+
+    </main>
+
+    <footer>
+        <p>© 2026 CivicConnect</p>
+    </footer>
+
+    <script>
+
+        function showComplaints() {
+
+            let complaintsDiv =
+                document.getElementById("complaints");
+
+            complaintsDiv.innerHTML = "";
+
+            let found = false;
+
+            for (let i = 0;
+                 i < localStorage.length;
+                 i++) {
+
+                let key = localStorage.key(i);
+
+                let data =
+                    localStorage.getItem(key);
+
+                try {
+
+                    let complaint =
+                        JSON.parse(data);
+
+                    if (complaint.id) {
+
+                        found = true;
+
+                        complaintsDiv.innerHTML += `
+
+                        <div class="complaint-card">
+
+                            <h3>
+                                Complaint ID:
+                                ${complaint.id}
+                            </h3>
+
+                            <p>
+                                <b>Citizen:</b>
+                                ${complaint.name}
+                            </p>
+
+                            <p>
+                                <b>Mobile:</b>
+                                ${complaint.mobile}
+                            </p>
+
+                            <p>
+                                <b>Issue:</b>
+                                ${complaint.category}
+                            </p>
+
+                            <p>
+                                <b>Location:</b>
+                                ${complaint.location}
+                            </p>
+
+                            <p>
+                                <b>Description:</b>
+                                ${complaint.description}
+                            </p>
+
+                            <p>
+                                <b>Status:</b>
+                                ${complaint.status}
+                            </p>
+
+                            <label>
+                                Update Status:
+                            </label>
+
+                            <select
+                                onchange="updateStatus(
+                                    '${complaint.id}',
+                                    this.value
+                                )">
+
+                                <option value="Received"
+                                ${complaint.status === "Received"
+                                ? "selected" : ""}>
+                                    Received
+                                </option>
+
+                                <option value="In Progress"
+                                ${complaint.status === "In Progress"
+                                ? "selected" : ""}>
+                                    In Progress
+                                </option>
+
+                                <option value="Resolved"
+                                ${complaint.status === "Resolved"
+                                ? "selected" : ""}>
+                                    Resolved
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        `;
+
+                    }
+
+                } catch (error) {
+
+                    // Ignore non-complaint data
+
+                }
+            }
+
+            if (!found) {
+
+                complaintsDiv.innerHTML =
+                    "<h3>No complaints submitted yet.</h3>";
+
+            }
+        }
+
+
+        function updateStatus(id, newStatus) {
+
+            let data =
+                localStorage.getItem(id);
+
+            if (data) {
+
+                let complaint =
+                    JSON.parse(data);
+
+                complaint.status =
+                    newStatus;
+
+                localStorage.setItem(
+                    id,
+                    JSON.stringify(complaint)
+                );
+
+                alert(
+                    "Complaint " +
+                    id +
+                    " updated to " +
+                    newStatus
+                );
+
+                showComplaints();
+            }
+        }
+
+
+        showComplaints();
+
+    </script>
+
+</body>
+
+</html>

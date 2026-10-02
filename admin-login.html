@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login - CivicConnect</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🏙️ CivicConnect</h1>
+        <p>Administration Login</p>
+    </header>
+
+    <main>
+
+        <h2>🔐 Admin Login</h2>
+
+        <form id="loginForm">
+
+            <label>Username</label>
+            <br>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                required
+            >
+
+            <br><br>
+
+            <label>Password</label>
+            <br>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+            >
+
+            <br><br>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <p id="loginMessage"></p>
+
+        <br>
+
+        <a href="index.html">
+            <button>⬅️ Back to Home</button>
+        </a>
+
+    </main>
+
+    <footer>
+        <p>© 2026 CivicConnect</p>
+    </footer>
+
+    <script>
+
+        document
+        .getElementById("loginForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let username =
+                document.getElementById("username").value;
+
+            let password =
+                document.getElementById("password").value;
+
+            /*
+              Demo login credentials
+              Username: admin
+              Password: 1234
+            */
+
+            if (username === "admin" && password === "1234") {
+
+                window.location.href = "admin.html";
+
+            } else {
+
+                document.getElementById("loginMessage").innerHTML =
+                    "❌ Incorrect username or password";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
